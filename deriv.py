@@ -14,10 +14,7 @@ def tanline(func: Callable[[float], float], x0: float):
     slope = derivative(func, x).subs(x, x0)
     y0 = func(x0)
 
-    def _tan(x) -> float:
-        return slope * (x - x0) + y0
-
-    return _tan
+    return lambda x: slope * (x - x0) + y0
 
 def newton(func: Callable[[sp.Symbol], sp.Expr], tol: float = 1e-7) -> list[Callable[[float], float]]:
     a: float = 10.0
